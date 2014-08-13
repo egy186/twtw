@@ -1,0 +1,37 @@
+{
+  "name": "twtw",
+  "version": "0.2.6",
+  "description": "twtw with Streaming API",
+  "license": "MIT",
+  "keywords": [
+    "twitter",
+    "streaming"
+  ],
+  "author": "egy186",
+  "homepage": "http://twtw-egy186.rhcloud.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/egy186/twtw"
+  },
+  "main": "./bin/www",
+  "scripts": {
+    "start": "node ./bin/www",
+    "prepublish": "./bin/prepub"
+  },
+  "dependencies": {
+    "body-parser": "^1.0.0",
+    "cookie-parser": "^1.0.1",
+    "debug": "^0.7.4",
+    "express": "^4.2.0",
+    "hjs": "^0.0.6",
+    "morgan": "^1.0.0",
+    "static-favicon": "^1.0.0",
+    "twit": "^1.1.18"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-bower-task": "^0.4.0",
+    "grunt-update-json": "^0.1.3"
+  }
+}
