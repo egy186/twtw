@@ -1,0 +1,22 @@
+{
+  "server": {
+    "port": 3000,
+    "ipaddress": "127.0.0.1",
+    "logDir": "./"
+  },
+  "twitter": {
+    "from": {
+      "idStr": "",
+      "consumer_key": "",
+      "consumer_secret": "",
+      "access_token": "",
+      "access_token_secret": ""
+    },
+    "to": {
+      "consumer_key": "",
+      "consumer_secret": "",
+      "access_token": "",
+      "access_token_secret": ""
+    }
+  }
+}

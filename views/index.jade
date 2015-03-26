@@ -1,0 +1,20 @@
+extends layout
+
+block prepend styles
+  link(rel='stylesheet', href='/lib/highlightjs/styles/github.css')
+
+block append scripts
+  script(src='/lib/highlightjs/highlight.pack.js')
+  script.
+    hljs.initHighlightingOnLoad();
+
+block body
+  main(role='main')
+    section.alert(class='alert-'+page.log.statusText)
+      h1.h2='Status: '+page.log.status
+      p.lead='message: '
+        span=page.log.message
+    section
+      h1.h3 twtw.log
+      pre
+        code.lang-json=page.log.twtwLog

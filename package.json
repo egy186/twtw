@@ -1,12 +1,8 @@
 {
   "name": "twtw",
-  "version": "0.3.3",
+  "version": "0.3.8",
   "description": "twtw with Streaming API.",
   "license": "MIT",
-  "keywords": [
-    "twitter",
-    "streaming"
-  ],
   "author": "egy186",
   "homepage": "http://twtw-egy186.rhcloud.com/",
   "repository": {
@@ -20,23 +16,24 @@
     "build": "gulp build"
   },
   "dependencies": {
-    "bluebird": "^2.9.6",
-    "body-parser": "^1.11.0",
-    "cookie-parser": "^1.3.3",
+    "bluebird": "^2.9.14",
+    "body-parser": "^1.12.2",
+    "config": "^1.12.0",
+    "cookie-parser": "^1.3.4",
     "debug": "^2.1.1",
-    "express": "^4.11.2",
-    "jade": "^1.9.1",
-    "morgan": "^1.5.1",
+    "express": "^4.12.3",
+    "jade": "^1.9.2",
+    "morgan": "^1.5.2",
     "serve-favicon": "^2.2.0",
-    "twit": "^1.1.19"
+    "twit": "^1.1.20"
   },
   "devDependencies": {
-    "bluebird": "^2.9.6",
+    "bluebird": "^2.9.14",
     "bower": "^1.3.12",
     "del": "^1.1.1",
-    "gulp": "^3.8.10",
-    "gulp-jshint": "^1.9.2",
-    "gulp-util": "^3.0.3",
-    "main-bower-files": "^2.5.0"
+    "gulp": "^3.8.11",
+    "gulp-jshint": "^1.9.4",
+    "gulp-util": "^3.0.4",
+    "main-bower-files": "^2.6.2"
   }
 }

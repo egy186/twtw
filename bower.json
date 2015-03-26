@@ -1,0 +1,23 @@
+{
+  "name": "twtw",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^3.3.4",
+    "highlightjs": "^8.4.0"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.min.css",
+        "dist/fonts/*.*"
+      ],
+      "dependencies": null
+    },
+    "highlightjs": {
+      "main": [
+        "highlight.pack.js",
+        "styles/github.css"
+      ]
+    }
+  }
+}
