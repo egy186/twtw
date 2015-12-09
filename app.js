@@ -1,49 +1,55 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+'use strict';
 
-var pkg = require('./package.json');
-var routes = require('./routes/index');
-var twtwStatus = require('./routes/status');
+const compression = require('compression');
+const config = require('config');
+const enforcesSsl = require('express-enforces-ssl');
+const express = require('express');
+const favicon = require('serve-favicon');
+const helmet = require('helmet');
+const logger = require('morgan');
+const mongoose = require('mongoose');
+const path = require('path');
 
-var app = express();
+mongoose.Promise = Promise;
+
+const router = require('./lib/router');
+
+const app = express();
+
+// db connection
+mongoose.connection.on('error', err => {
+  throw err;
+});
+mongoose.connect(config.mongodb);
+process.on('SIGINT', () => {
+  mongoose.connection.close(() => {
+    process.exit(0); // eslint-disable-line no-process-exit
+  });
+});
 
 // start twtw
-require('./twtw');
+require('./lib/twtw');
 
+app.set('trust proxy', true);
 app.set('x-powered-by', false);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(favicon(__dirname + '/public/favicon.ico'));
+if (app.get('env') === 'production') {
+  app.use(enforcesSsl());
+}
+app.use(helmet());
+app.use(compression());
+app.use(favicon(path.join(__dirname, '/public/favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// redirect to HTTPS
-if (app.get('env') === 'production') {
-  app.use(function (req, res, next) {
-    res.set('strict-transport-security', 'max-age=63072000');
-    if (req.headers['x-forwarded-proto'] === 'http') {
-      res.redirect(301, 'https://' + req.headers.host + req.originalUrl);
-    } else {
-      next();
-    }
-  });
-}
-
-app.use('/', routes);
-app.use('/status', twtwStatus);
+app.use('/', router);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -53,33 +59,19 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-/* jshint -W098 */
-  app.use(function(err, req, res, next) {
-/* jshint +W098 */
+  app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     err.status = err.status || 500;
     res.status(err.status);
-    res.render('error', {
-      site: pkg,
-      message: err.message,
-      error: err
-    });
+    res.send(err.stack);
   });
 }
 
 // production error handler
 // no stacktraces leaked to user
-/* jshint -W098 */
-app.use(function(err, req, res, next) {
-/* jshint +W098 */
+app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   err.status = err.status || 500;
   res.status(err.status);
-  res.render('error', {
-    site: pkg,
-    message: err.message,
-    error: {
-      status: err.status
-    }
-  });
+  res.send(err.message);
 });
 
 

@@ -1,20 +1,47 @@
-extends layout
-
-block prepend styles
-  link(rel='stylesheet', href='/lib/highlightjs/styles/github.css')
-
-block append scripts
-  script(src='/lib/highlightjs/highlight.pack.js')
-  script.
-    hljs.initHighlightingOnLoad();
-
-block body
-  main(role='main')
-    section.alert(class='alert-'+page.log.statusText)
-      h1.h2='Status: '+page.log.status
-      p.lead='message: '
-        span=page.log.message
-    section
-      h1.h3 twtw.log
-      pre
-        code.lang-json=page.log.twtwLog
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title=site.name
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
+    meta(name='viewport', content='width=device-width,user-scalable=no,initial-scale=1')
+    meta(name='author', content=site.author)
+    style
+      include ../styles/bundle.css
+    script.
+      WebFontConfig = {
+        google: { families: ['Open+Sans:400:latin'] }
+      };
+      (function () {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+          '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
+  body.container
+    header.page-header
+      h1=site.name
+        |  
+        small='v'+site.version
+          |  
+          a(target='_blank', href='//david-dm.org/egy186/twtw-e', title='Dependency status')
+            img(src='//david-dm.org/egy186/twtw-e.svg')
+          |  
+          a(target='_blank', href='//david-dm.org/egy186/twtw-e#info=devDependencies', title='devDependency status')
+            img(src='//david-dm.org/egy186/twtw-e/dev-status.svg')
+      p=site.description
+    main(role='main')
+      section.alert(class='alert-'+page.statusText)
+        h1.h2='Status: '+page.status
+        p.lead='message: '
+          span=page.message
+      section
+        h1.h3 Latest Log
+        pre
+          code!=page.log
+    footer.page-footer
+      p by 
+        a(target='_blank', href='//github.com/'+site.author)='@'+site.author

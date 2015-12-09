@@ -1,9 +1,5 @@
-config/local.*
-config/production.*
-twtw.js
-
-node_modules/
-bower_components/
-public/lib/
-
-twtw.log
+*.log
+config/development.*
+lib/twtw.js
+node_modules
+styles/**/*.css

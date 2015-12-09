@@ -1,39 +1,42 @@
 {
   "name": "twtw-e",
-  "version": "0.3.8",
   "description": "twtw with Streaming API.",
-  "license": "MIT",
+  "version": "0.4.2",
   "author": "egy186",
-  "homepage": "http://twtw-egy186.rhcloud.com/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/egy186/twtw.git"
-  },
-  "private": true,
-  "main": "./bin/www",
-  "scripts": {
-    "start": "node ./bin/www",
-    "build": "gulp build"
-  },
   "dependencies": {
-    "bluebird": "^2.9.14",
-    "body-parser": "^1.12.2",
-    "config": "^1.12.0",
-    "cookie-parser": "^1.3.4",
-    "debug": "^2.1.1",
-    "express": "^4.12.3",
-    "jade": "^1.9.2",
-    "morgan": "^1.5.2",
-    "serve-favicon": "^2.2.0",
-    "twit": "^1.1.20"
+    "compression": "^1.6.0",
+    "config": "^1.17.1",
+    "debug": "^2.2.0",
+    "express": "^4.13.3",
+    "express-enforces-ssl": "^1.1.0",
+    "helmet": "^0.15.0",
+    "highlight.js": "^9.0.0",
+    "jade": "^1.11.0",
+    "mongoose": "^4.2.9",
+    "morgan": "^1.6.1",
+    "newrelic": "^1.24.0",
+    "serve-favicon": "^2.3.0",
+    "twit": "^2.1.1"
   },
   "devDependencies": {
-    "bluebird": "^2.9.14",
-    "bower": "^1.3.12",
-    "del": "^1.1.1",
-    "gulp": "^3.8.11",
-    "gulp-jshint": "^1.9.4",
-    "gulp-util": "^3.0.4",
-    "main-bower-files": "^2.6.2"
+    "bootstrap-sass": "^3.3.6",
+    "eslint": "^1.10.3",
+    "eslint-config-eslint": "^1.0.1",
+    "node-sass": "^3.4.2",
+    "rimraf": "^2.4.4"
+  },
+  "engines": {
+    "node": "~5.1.0"
+  },
+  "homepage": "http://twtw-e.herokuapp.com/",
+  "license": "MIT",
+  "main": "./bin/www",
+  "private": true,
+  "scripts": {
+    "build": "node-sass -q --include-path node_modules --output-style compressed -o styles styles",
+    "clean": "rimraf styles/**/*.css",
+    "lint": "eslint **/*.js bin/www",
+    "postinstall": "npm run build",
+    "start": "node ./bin/www"
   }
 }

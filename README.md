@@ -1,5 +1,5 @@
 # twtw
 
-[![Dependency Status](https://img.shields.io/david/egy186/twtw.svg?style=flat)](https://david-dm.org/egy186/twtw) [![devDependency Status](https://img.shields.io/david/dev/egy186/twtw.svg?style=flat)](https://david-dm.org/egy186/twtw#info=devDependencies)
+[![Dependency Status](https://david-dm.org/egy186/twtw-e.svg)](https://david-dm.org/egy186/twtw-e) [![devDependency Status](https://david-dm.org/egy186/twtw-e/dev-status.svg)](https://david-dm.org/egy186/twtw-e#info=devDependencies)
 
 twtw with Streaming API.

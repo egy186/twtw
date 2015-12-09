@@ -1,9 +1,5 @@
 {
-  "server": {
-    "port": 3000,
-    "ipaddress": "127.0.0.1",
-    "logDir": "./"
-  },
+  "mongodb": "",
   "twitter": {
     "from": {
       "idStr": "",

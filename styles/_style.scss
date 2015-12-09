@@ -1,0 +1,15 @@
+@import "variables";
+
+body {
+  font-family: $sans-serif;
+}
+
+code {
+  font-family: $monospace;
+}
+
+.page-footer {
+  margin: 20px 0 40px;
+  padding-top: 9px;
+  border-top: 1px solid rgb(238, 238, 238);
+}
